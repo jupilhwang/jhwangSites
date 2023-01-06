@@ -8,7 +8,6 @@ categories = [
   "docker",
 ]
 date = "2016-11-23T14:29:35+09:00"
-
 +++
 
 ### Docker Image 의 Base Sizse 늘리기

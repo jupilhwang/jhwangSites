@@ -1,6 +1,13 @@
 ---
 categories:
 - Kafka/Confluent
+title: "Kafka Encryption with SSL/TLS"
+tags:
+- docker
+- cloud
+categories:
+- kafka
+date: "2022-12-23T14:29:35+09:00"
 ---
 # Encryption with SSL/TLS
 
