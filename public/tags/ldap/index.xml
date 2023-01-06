@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LDAP on Just Do It ! - Yolo</title>
+    <link>https://jupilhwang.github.io/tags/ldap/</link>
+    <description>Recent content in LDAP on Just Do It ! - Yolo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US.UTF8</language>
+    <copyright>Jupil Hwang All rights reserved</copyright>
+    <lastBuildDate>Tue, 31 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jupilhwang.github.io/tags/ldap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>사용자/그룹 관리를 위한 Aerobase</title>
+      <link>https://jupilhwang.github.io/post/%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B7%B8%EB%A3%B9%EA%B4%80%EB%A6%AC%EB%A5%BC%EC%9C%84%ED%95%9Caerobase/</link>
+      <pubDate>Tue, 31 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jupilhwang.github.io/post/%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B7%B8%EB%A3%B9%EA%B4%80%EB%A6%AC%EB%A5%BC%EC%9C%84%ED%95%9Caerobase/</guid>
+      <description>Aerobase 모든 시스템 솔루션에는 IAM(Identity &amp;amp; Access Management)이 필요하다. 쉽게는 LDAP을 위한 OpenLDAP이나 OpenDS같은것을 생각할 수 있으나, Keycloak기반의 Aerobase가 최근에 인기가 있다. 단순 IAM 뿐만 아니라 SSO 솔루션(OAuth2, OIDC, SAML)으로도 사용이 가능하다.
+https://aerobase.io
+Free: unlimited application and back-end protection without any charges Multi-platform support: single UI and API to deliver OAuth2 Multi-SDK support: provides SDKs OpenID Connect public cloud 인 https://cloud.aerobase.io/portal 에 사용자 계정을 생성하여, 사용할 수도 있다.
+설치 Download Aerobase Server</description>
+    </item>
+    
+  </channel>
+</rss>

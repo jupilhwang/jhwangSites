@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloudfoundry on Just Do It ! - Yolo</title>
+    <link>https://jupilhwang.github.io/tags/cloudfoundry/</link>
+    <description>Recent content in cloudfoundry on Just Do It ! - Yolo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US.UTF8</language>
+    <copyright>Jupil Hwang All rights reserved</copyright>
+    <lastBuildDate>Fri, 15 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jupilhwang.github.io/tags/cloudfoundry/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CF for K8s</title>
+      <link>https://jupilhwang.github.io/post/200515_cf-for-k8s/</link>
+      <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jupilhwang.github.io/post/200515_cf-for-k8s/</guid>
+      <description>Cloudfoundry 는 컨테이너 기반의 애플리케이션을 위한 플랫폼으로 PaaS 시장을 선도하고 있다. Heroku와 더불어 PaaS의 양대 산맥이라 할 수 있을 것이다. Cloudfoundry 는 자체 개발한 Garden이라고 하는 컨테이너 오케스트레이션 툴을 사용하였다. Kubernetes 가 등장하고 나서, 이 컨테이너 오케스트레이션 툴을 Kuberentes 으로 대체하는 프로젝트가 등장하였고, 마침내 cf-for-k8s 가 나왔다. 기존에 애플리케이션을 개발하여 손쉽게 배포하여 테스트하고 운영 하던 경험을 그대로 쿠버네티스에서도 경험할 수 있다.
+CloudFoundry for Kubernetes https://tanzu.vmware.com/developer/guides/kubernetes/cf4k8s-gs/
+그 동안 BOSH / Deigo 기반의 Cloudfoundry (이하 CF) 를 Kubernetes 기반으로 사용할 수 있다.</description>
+    </item>
+    
+  </channel>
+</rss>

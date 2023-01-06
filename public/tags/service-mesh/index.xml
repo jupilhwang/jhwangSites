@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Service Mesh on Just Do It ! - Yolo</title>
+    <link>https://jupilhwang.github.io/tags/service-mesh/</link>
+    <description>Recent content in Service Mesh on Just Do It ! - Yolo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US.UTF8</language>
+    <copyright>Jupil Hwang All rights reserved</copyright>
+    <lastBuildDate>Fri, 03 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jupilhwang.github.io/tags/service-mesh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Istio 1.5로 구성하는 서비스메시</title>
+      <link>https://jupilhwang.github.io/post/istio1.5%EB%A1%9C_%EA%B5%AC%EC%84%B1%ED%95%98%EB%8A%94_%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A9%94%EC%8B%9C/</link>
+      <pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jupilhwang.github.io/post/istio1.5%EB%A1%9C_%EA%B5%AC%EC%84%B1%ED%95%98%EB%8A%94_%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A9%94%EC%8B%9C/</guid>
+      <description>Istio로 구성하는 서비스 메시 이전 Architecture 일반적으로 Istio의 구성요소라고 하면, 아래와 같이 이야기한다.
+Envoy Proxy Mixer Pilot Galley Citadel 하지만, Mixer로 인한 네트워크 레이턴시 성능 이슈가 있어서, 아키텍처가 변경이 되었는데 Mixer가 없어지고 Telemetry로 변경이 되고, Envoy Proxy 에서 바로 모니터링 솔루션우로 메트릭을 전송하는 형태로 변경이 되었다.
+달라진 Architecture </description>
+    </item>
+    
+  </channel>
+</rss>

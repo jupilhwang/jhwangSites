@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>let&#39;s encrypted on Just Do It ! - Yolo</title>
+    <link>https://jupilhwang.github.io/tags/lets-encrypted/</link>
+    <description>Recent content in let&#39;s encrypted on Just Do It ! - Yolo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US.UTF8</language>
+    <copyright>Jupil Hwang All rights reserved</copyright>
+    <lastBuildDate>Tue, 30 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jupilhwang.github.io/tags/lets-encrypted/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TLS with certbot</title>
+      <link>https://jupilhwang.github.io/post/200701.tls_certbot/</link>
+      <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jupilhwang.github.io/post/200701.tls_certbot/</guid>
+      <description>TLS Let&amp;rsquo;s Encrypted certbot certbot 설치 PIP로 설치 Package Management로 설치 Enable the universe repository sudo apt-get install software-properties-common sudo add-apt-repository universe sudo apt-get update Install certbot sudo apt install certbot certbot certonly --manual \ --preferred-challengers=dns \ --email jupil.hwang@gmail.com \ --server https://acme-v02.api.letsencrypt.org/directory \ --agress-tos \ -d *.harbor.lgvmw01.local </description>
+    </item>
+    
+  </channel>
+</rss>

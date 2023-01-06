@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on Just Do It ! - Yolo</title>
+    <link>https://jupilhwang.github.io/tags/mysql/</link>
+    <description>Recent content in mysql on Just Do It ! - Yolo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US.UTF8</language>
+    <copyright>Jupil Hwang All rights reserved</copyright>
+    <lastBuildDate>Sat, 04 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jupilhwang.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpringBoot 2.3 과 R2DBC를 이용한 어플리케이션</title>
+      <link>https://jupilhwang.github.io/post/springboot_2.3_with_r2dbc_mysql/</link>
+      <pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jupilhwang.github.io/post/springboot_2.3_with_r2dbc_mysql/</guid>
+      <description>SpringBoot 2.3 [참고 URL] https://docs.microsoft.com/en-us/azure/java/spring-framework/configure-spring-data-r2dbc-with-azure-mysql∏</description>
+    </item>
+    
+  </channel>
+</rss>

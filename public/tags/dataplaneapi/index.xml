@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dataplaneapi on Just Do It ! - Yolo</title>
+    <link>https://jupilhwang.github.io/tags/dataplaneapi/</link>
+    <description>Recent content in dataplaneapi on Just Do It ! - Yolo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US.UTF8</language>
+    <copyright>Jupil Hwang All rights reserved</copyright>
+    <lastBuildDate>Tue, 30 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://jupilhwang.github.io/tags/dataplaneapi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HAProxy - dataplaneapi / Kubernetes - service-api</title>
+      <link>https://jupilhwang.github.io/post/200630_haproxy_dataplaneapi/</link>
+      <pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jupilhwang.github.io/post/200630_haproxy_dataplaneapi/</guid>
+      <description>HA-Proxy SW loadbalancer로 제일 많이 사용하는 것 중에 한가지가 nginx나 haproxy 일것이다. http/s 위주의 서비스라면 nginx로 충분하겠지만, 범용으로 tcp/udp 서비스를 위한 Load Balancer 로 사용할려면 ha-proxy 를 사용하는 것이 좋다. 또는 envoy나 traefik 등을 사용할 수 있다.
+subject http https Latency (HTTP) Requests/Second 출처 : https://www.loggly.com/blog/benchmarking-5-popular-load-balancers-nginx-haproxy-envoy-traefik-and-alb/
+위의 Benchmark 자료를 보면 알 수 있듯이, envoy나 traefik이 요즘 유행하고 있지만, 역시 구관이 명관이다.
+설정 reload haproxy.cfg /etc/haproxy/haproxy.cfg 에 haproxy 설정을 추가하고 변경된 설정을 적용하기 위해서 haproxy reload 를 해줘야 하는데, 설정이 자주 변경될 때 매번 haproxy 서버에 접속해서 haproxy.</description>
+    </item>
+    
+  </channel>
+</rss>

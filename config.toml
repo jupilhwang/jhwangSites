@@ -1,0 +1,78 @@
+baseURL = "https://jupilhwang.github.io/"
+builddrafts = true
+canonifyurls = true
+languageCode = "en-US.UTF8"
+DefaultContentLanguage = "kr"
+title = "Just Do It ! - Yolo"
+pygmentsuseclasses = true
+pluralizelisttitles = false
+comments = "disqus"
+disqusShortname = "just-do-it-2"
+preserveTaxonomyNames = true
+copyright = "Jupil Hwang All rights reserved"
+googleAnalytics = "UA-117423189-1"
+ba_track_id = "UA-117423189-1"
+paginate = 24
+#theme = "hugo-multi-bootswatch"
+#theme= "hugo-theme-chunky-poster"
+theme= "hugo-theme-cleanwhite"
+#theme= "hugo-theme-learn"
+enableRobotsTXT = true
+canonifyURLs = true
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[params]
+header_image = "img/home-bg.jpg"
+image_404 = "img/404-bg.jpg"
+languagecode = "en-US"
+Author = "Jupil Hwang (@jupil_hwang)"
+googlefonts = "https=//fonts.googleapis.com/css?family=Lobster|Lato=400,700"
+fontfamily = "San Francisco Display,Malgun Gothic,'맑은 고딕',Lato,YuGothic,'Hiragino Kaku Gothic Pro',Meiryo,sans-serif"
+logofontfamily = "San Francisco Display,Malgun Gothic,'맑은 고딕',Lobster, cursive"
+copyright = "Jupil Hwang All rights reserved"
+pygmentsCodeFences = "true"
+pygmentsUseClasses = "true"
+featured_tags = "true"
+featured_condition_size = 2
+sidebar_about_description = "Software Developer, Open Source Enthusiast and Life Adventurer"
+sidebar_avatar = "/img/jhwang.jpg"
+friends = false
+bookmarks = true
+about_me = true
+showtoc = false
+custom_css = ["css/lightbox.css", "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css", "css/main.css"]
+custom_js = ["js/lightbox.js", "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", "js/main.js"]
+
+[sitemap]
+ChangeFreq = "daily"
+Filename = "sitemap.xml"
+Priority = 0.5
+
+[params.social]
+rss     = true
+facebook = "https://www.facebook.com/jupilhwang"
+twitter = "https://twitter.com/jupil_hwang"
+github = "https://github.com/jupilhwang"
+linkedin = "https://www.linkedin.com/in/namoo4u"
+email = "jupil.hwang@gmail.com"
+
+[[params.omit_categories]]
+title = "BLOG"
+href = "/blogs"
+
+[[params.addtional_menus]]
+title =  "BOOKS"
+href =  "/top/books/"
+
+[[params.addtional_menus]]
+title =  "ABOUT"
+href =  "/page/about"
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 2
+    startLevel = 1
+  [markup.highlight]
+    style = "dracula"

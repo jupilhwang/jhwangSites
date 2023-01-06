@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jenkins on Just Do It ! - Yolo</title>
+    <link>https://jupilhwang.github.io/tags/jenkins/</link>
+    <description>Recent content in jenkins on Just Do It ! - Yolo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US.UTF8</language>
+    <copyright>Jupil Hwang All rights reserved</copyright>
+    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jupilhwang.github.io/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jenkins 파이프라인 to Build Image / Push Image on Kubernetes</title>
+      <link>https://jupilhwang.github.io/post/210111.jenkinsfile%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8onkubernetes/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://jupilhwang.github.io/post/210111.jenkinsfile%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8onkubernetes/</guid>
+      <description>Jenkins 설치 On K8s Prerequisites Docker pipeline plugin Google container registry for authenticate Kubernetes config Remote Docker Server docker daemon 에서 0.0.0.0:4243 을 추가해서 원격에서 tcp 로 접속할 수 있도록 한다.
+# File : /etc/default/docker DOCKER_OPTS=&amp;#34;--dns 8.8.8.8 -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock&amp;#34; # File : /lib/systemd/system/docker.service EnvironmentFile=/etc/default/docker ExecStart=/usr/bin/docker -H fd:// $DOCKER_OPTS --containerd=/run/containerd/containerd.sock 또는
+# File : /etc/docker/deamon.json .. &amp;#34;hosts&amp;#34;: [&amp;#34;tcp://0.0.0.0:4243&amp;#34;, &amp;#34;unix:///var/lib/docker.sock&amp;#34;, &amp;#34;fd://&amp;#34;], .. # File : /lib/systemd/system/docker.service ExecStart=/usr/bin/docker --containerd=/run/containerd/containerd.sock 또는 ssh 로 접속하도록 할 수 있는데, 이 경우 ssh-copyid 로 미리 authorizedeky 로 등록 해 줘야한다.</description>
+    </item>
+    
+  </channel>
+</rss>

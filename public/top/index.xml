@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Top on Just Do It ! - Yolo</title>
+    <link>https://jupilhwang.github.io/top/</link>
+    <description>Recent content in Top on Just Do It ! - Yolo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US.UTF8</language>
+    <copyright>Jupil Hwang All rights reserved</copyright><atom:link href="https://jupilhwang.github.io/top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Book</title>
+      <link>https://jupilhwang.github.io/top/books/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jupilhwang.github.io/top/books/</guid>
+      <description>번역서 쿠버네티스 인 액션 : 그림과 상세한 설명으로 명확하게 이해하는(재출간판) Hands-on Microservice with Kotlin Microservices with Kubernetes Getting Started with Istio Service Mesh </description>
+    </item>
+    
+  </channel>
+</rss>
