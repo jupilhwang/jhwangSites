@@ -168,7 +168,7 @@ keytool -keystore kafka.client.truststore.jks -alias CARoot -import -file ca.crt
 
 ### 1-1. Certificate Authority (CA) 설정 파일 생성
 ```
-\[ policy\_match \]
+[ policy_match ]
 countryName = match
 stateOrProvinceName = match
 organizationName = match
@@ -176,20 +176,20 @@ organizationalUnitName = optional
 commonName = supplied
 emailAddress = optional
 
-\[ req \]
+[ req ]
 prompt = no
-distinguished\_name = dn
-default\_md = sha256
-default\_bits = 4096
-x509\_extensions = v3\_ca
+distinguished_name = dn
+default_md = sha256
+default_bits = 4096
+x509_extensions = v3_ca
 
-\[ dn \]
+[ dn ]
 countryName = {country code, e.g., US}
 organizationName = {organization name}
 localityName = {locality, e.g., city name}
 commonName = {certificate common name, e.g., <company name>-ca}
 
-\[ v3\_ca \]
+[ v3_ca ]
 subjectKeyIdentifier=hash
 basicConstraints = critical,CA:true
 authorityKeyIdentifier=keyid:always,issuer:always
@@ -198,12 +198,12 @@ keyUsage = critical,keyCertSign,cRLSign
 
 ### 1-2. CA key 및 Certificate 생성 후 pem format 으로 변경
 ```
-openssl req -new -nodes \\
-  -x509 \\
-  -days {validity} \\
-  -newkey rsa:2048 \\
-  -keyout ca.key \\
-  -out ca.crt \\
+openssl req -new -nodes \
+  -x509 \
+  -days {validity} \
+  -newkey rsa:2048 \
+  -keyout ca.key \
+  -out ca.crt \
   -config ca.cnf
   
 
@@ -211,48 +211,48 @@ cat ca.crt ca.key > ca.pem
 ```
 ### 1-3.  server key 및 Certificate signing request (.csr 파일)
 ```
-openssl req -new \\
-    -newkey rsa:2048 \\
-    -keyout kafka.server.key \\
-    -out kafka.server.csr \\
-    -config kafka.server.cnf \\
+openssl req -new \
+    -newkey rsa:2048 \
+    -keyout kafka.server.key \
+    -out kafka.server.csr \
+    -config kafka.server.cnf \
     -nodes
 ```
 
 ### 1-4. Server certificate 를 CA 로 sign 하기
 ```
-openssl x509 -req \\
-    -days {validity} \\
-    -in kafka.server.csr \\
-    -CA ca.crt \\
-    -CAkey ca.key \\
-    -CAcreateserial \\
-    -out kafka.server.crt \\
-    -extfile kafka.server.cnf \\
-    -extensions v3\_req
+openssl x509 -req \
+    -days {validity} \
+    -in kafka.server.csr \
+    -CA ca.crt \
+    -CAkey ca.key \
+    -CAcreateserial \
+    -out kafka.server.crt \
+    -extfile kafka.server.cnf \
+    -extensions v3_req
 ```
 
 ### 1-5. Server certificate 를 pkcs12 포멧으로 변경
 ```
-openssl pkcs12 -export \\
-    -in kafka.server.crt \\
-    -inkey kafka.server.key \\
-    -chain \\
-    -CAfile ca.pem \\
-    -name localhost \\
-    -out kafka.server.p12 \\
+openssl pkcs12 -export \
+    -in kafka.server.crt \
+    -inkey kafka.server.key \
+    -chain \
+    -CAfile ca.pem \
+    -name localhost \
+    -out kafka.server.p12 \
     -password pass:test1234
 ```
 
 ### 1-6. server keystore 생성
 ```
-sudo keytool -importkeystore \\
-    -deststorepass test1234 \\
-    -destkeystore kafka.server.keystore.pkcs12 \\
-    -srckeystore kafka.server.p12 \\
-    -deststoretype PKCS12  \\
-    -srcstoretype PKCS12 \\
-    -noprompt \\
+sudo keytool -importkeystore \
+    -deststorepass test1234 \
+    -destkeystore kafka.server.keystore.pkcs12 \
+    -srckeystore kafka.server.p12 \
+    -deststoretype PKCS12  \
+    -srcstoretype PKCS12 \
+    -noprompt \
     -srcstorepass test1234
 ```
 
@@ -271,13 +271,13 @@ ssl.key.password=test1234
 
 ### Kafka Broker SSL Listeners 설정
 ```
-listeners=SSL://:9093,SASL\_SSL://:9094
+listeners=SSL://:9093,SASL_SSL://:9094
 ```
   
 
 - The SSL://:9093 listener does not require client authentication unless ssl.client.auth=required is also set
     
-- The SASL\_SSL://:9094 listener requires SASL client authentication
+- The SASL_SSL://:9094 listener requires SASL client authentication
     
 
   
@@ -291,20 +291,20 @@ listeners=SSL://:9093,SASL\_SSL://:9094
 - SSL Listener 추가
     
 ```
-#KAFKA\_LISTENERS: PLAINTEXT://0.0.0.0:19092,BROKER://0.0.0.0:9092
+#KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:19092,BROKER://0.0.0.0:9092
 
-#KAFKA\_ADVERTISED\_LISTENERS: PLAINTEXT://kafka-1-external:19092,BROKER://kafka-1:9092
+#KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1-external:19092,BROKER://kafka-1:9092
 
-KAFKA\_LISTENERS: PLAINTEXT://0.0.0.0:19092,SSL://0.0.0.0:19093,BROKER://0.0.0.0:9092
+KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:19092,SSL://0.0.0.0:19093,BROKER://0.0.0.0:9092
 
-KAFKA\_ADVERTISED\_LISTENERS: PLAINTEXT://kafka-1-external:19092,SSL://kafka-1-external:19093,BROKER://kafka-1:9092
+KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1-external:19092,SSL://kafka-1-external:19093,BROKER://kafka-1:9092
 ```
   
 
 - listener.security.protocol.map 에 SSL 추가
     
 ```
-KAFKA\_LISTENER\_SECURITY\_PROTOCOL\_MAP: PLAINTEXT:PLAINTEXT,SSL:SSL,BROKER:PLAINTEXT
+KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,SSL:SSL,BROKER:PLAINTEXT
 ```
   
 
@@ -313,12 +313,12 @@ KAFKA\_LISTENER\_SECURITY\_PROTOCOL\_MAP: PLAINTEXT:PLAINTEXT,SSL:SSL,BROKER:PLA
 1. Certificate Authority (CA) Key 및 Certificate 생성
     
 ```
-openssl req -new -nodes \\
-  -x509 \\
-  -days 365 \\
-  -newkey rsa:2048 \\
-  -keyout ~/tls/ca.key \\
-  -out ~/tls/ca.crt \\
+openssl req -new -nodes \
+  -x509 \
+  -days 365 \
+  -newkey rsa:2048 \
+  -keyout ~/tls/ca.key \
+  -out ~/tls/ca.crt \
   -config ~/tls/ca.cnf
 ```
   
@@ -338,7 +338,7 @@ writing new private key to '/home/training/tls/ca.key'
 - ca.cnf
     
 ```
-\[ policy\_match \]
+[ policy_match ]
 
 countryName = match
 
@@ -354,21 +354,21 @@ emailAddress = optional
 
   
 
-\[ req \]
+[ req ]
 
 prompt = no
 
-distinguished\_name = dn
+distinguished_name = dn
 
-default\_md = sha256
+default_md = sha256
 
-default\_bits = 4096
+default_bits = 4096
 
-x509\_extensions = v3\_ca
+x509_extensions = v3_ca
 
   
 
-\[ dn \]
+[ dn ]
 
 countryName = US
 
@@ -380,7 +380,7 @@ commonName = confluent-ca
 
   
 
-\[ v3\_ca \]
+[ v3_ca ]
 
 subjectKeyIdentifier=hash
 
@@ -404,36 +404,36 @@ cat ~/tls/ca.crt ~/tls/ca.key > ~/tls/ca.pem
 1. server key 및 certificate signing request (.csr file) 생성
     
 ```
-openssl req -new \\
+openssl req -new \
 
-    -newkey rsa:2048 \\
+    -newkey rsa:2048 \
 
-    -keyout ~/tls/kafka-1-creds/kafka-1.key \\
+    -keyout ~/tls/kafka-1-creds/kafka-1.key \
 
-    -out ~/tls/kafka-1-creds/kafka-1.csr \\
+    -out ~/tls/kafka-1-creds/kafka-1.csr \
 
-    -config ~/tls/kafka-1-creds/kafka-1.cnf \\
+    -config ~/tls/kafka-1-creds/kafka-1.cnf \
 
     -nodes
 ```
 - kafka-1.cnf
     
 ```
-\[req\]
+[req]
 
 prompt = no
 
-distinguished\_name = dn
+distinguished_name = dn
 
-default\_md = sha256
+default_md = sha256
 
-default\_bits = 4096
+default_bits = 4096
 
-req\_extensions = v3\_req
+req_extensions = v3_req
 
   
 
-\[ dn \]
+[ dn ]
 
 countryName = US
 
@@ -445,7 +445,7 @@ commonName=kafka-1
 
   
 
-\[ v3\_ca \]
+[ v3_ca ]
 
 subjectKeyIdentifier=hash
 
@@ -457,7 +457,7 @@ keyUsage = critical,keyCertSign,cRLSign
 
   
 
-\[ v3\_req \]
+[ v3_req ]
 
 subjectKeyIdentifier = hash
 
@@ -469,11 +469,11 @@ keyUsage = critical, digitalSignature, keyEncipherment
 
 extendedKeyUsage = serverAuth, clientAuth
 
-subjectAltName = @alt\_names
+subjectAltName = @alt_names
 
   
 
-\[ alt\_names \]
+[ alt_names ]
 
 DNS.1=kafka-1
 
@@ -484,23 +484,23 @@ DNS.2=kafka-1-external
 1. Server certificate 를 CA로 sign 하기
     
 ```
-openssl x509 -req \\
+openssl x509 -req \
 
-    -days 3650 \\
+    -days 3650 \
 
-    -in ~/tls/kafka-1-creds/kafka-1.csr \\
+    -in ~/tls/kafka-1-creds/kafka-1.csr \
 
-    -CA ~/tls/ca.crt \\
+    -CA ~/tls/ca.crt \
 
-    -CAkey ~/tls/ca.key \\
+    -CAkey ~/tls/ca.key \
 
-    -CAcreateserial \\
+    -CAcreateserial \
 
-    -out ~/tls/kafka-1-creds/kafka-1.crt \\
+    -out ~/tls/kafka-1-creds/kafka-1.crt \
 
-    -extfile ~/tls/kafka-1-creds/kafka-1.cnf \\
+    -extfile ~/tls/kafka-1-creds/kafka-1.cnf \
 
-    -extensions v3\_req
+    -extensions v3_req
 ```
 
   
@@ -516,19 +516,19 @@ Getting CA Private Key
 1. server certificate 를 pkcs12 포멧으로 변경
     
 ```
-openssl pkcs12 -export \\
+openssl pkcs12 -export \
 
-    -in ~/tls/kafka-1-creds/kafka-1.crt \\
+    -in ~/tls/kafka-1-creds/kafka-1.crt \
 
-    -inkey ~/tls/kafka-1-creds/kafka-1.key \\
+    -inkey ~/tls/kafka-1-creds/kafka-1.key \
 
-    -chain \\
+    -chain \
 
-    -CAfile ~/tls/ca.pem \\
+    -CAfile ~/tls/ca.pem \
 
-    -name kafka-1 \\
+    -name kafka-1 \
 
-    -out ~/tls/kafka-1-creds/kafka-1.p12 \\
+    -out ~/tls/kafka-1-creds/kafka-1.p12 \
 
     -password pass:confluent
 ```
@@ -537,19 +537,19 @@ openssl pkcs12 -export \\
 1. Broker keystore 생성
     
 ```
-sudo keytool -importkeystore \\
+sudo keytool -importkeystore \
 
-    -deststorepass confluent \\
+    -deststorepass confluent \
 
-    -destkeystore ~/tls/kafka-1-creds/kafka.kafka-1.keystore.pkcs12 \\
+    -destkeystore ~/tls/kafka-1-creds/kafka.kafka-1.keystore.pkcs12 \
 
-    -srckeystore ~/tls/kafka-1-creds/kafka-1.p12 \\
+    -srckeystore ~/tls/kafka-1-creds/kafka-1.p12 \
 
-    -deststoretype PKCS12  \\
+    -deststoretype PKCS12  \
 
-    -srcstoretype PKCS12 \\
+    -srcstoretype PKCS12 \
 
-    -noprompt \\
+    -noprompt \
 
     -srcstorepass confluent
 ```
@@ -566,9 +566,9 @@ Import command completed:  1 entries successfully imported, 0 entries failed or
 1. kafka-1 broker keystore 확인
     
 ```
-keytool -list -v \\
+keytool -list -v \
 
-    -keystore ~/tls/kafka-1-creds/kafka.kafka-1.keystore.pkcs12 \\
+    -keystore ~/tls/kafka-1-creds/kafka.kafka-1.keystore.pkcs12 \
 
     -storepass confluent
 ```
@@ -592,7 +592,7 @@ Entry type: PrivateKeyEntry
 
 Certificate chain length: 2
 
-Certificate\[1\]:
+Certificate[1]:
 
 Owner: CN=kafka-1, L=MountainView, O=CONFLUENT, C=US
 
@@ -632,69 +632,69 @@ Extensions:
 
 #2: ObjectId: 2.5.29.19 Criticality=false
 
-BasicConstraints:\[
+BasicConstraints:[
 
   CA:false
 
   PathLen: undefined
 
-\]
+]
 
   
 
 #3: ObjectId: 2.5.29.37 Criticality=false
 
-ExtendedKeyUsages \[
+ExtendedKeyUsages [
 
   serverAuth
 
   clientAuth
 
-\]
+]
 
   
 
 #4: ObjectId: 2.5.29.15 Criticality=true
 
-KeyUsage \[
+KeyUsage [
 
   DigitalSignature
 
-  Key\_Encipherment
+  Key_Encipherment
 
-\]
+]
 
   
 
 #5: ObjectId: 2.5.29.17 Criticality=false
 
-SubjectAlternativeName \[
+SubjectAlternativeName [
 
   DNSName: kafka-1
 
   DNSName: kafka-1-external
 
-\]
+]
 
   
 
 #6: ObjectId: 2.5.29.14 Criticality=false
 
-SubjectKeyIdentifier \[
+SubjectKeyIdentifier [
 
-KeyIdentifier \[
+KeyIdentifier [
 
 0000: F5 49 61 12 B9 49 F5 AB  EC F0 16 E2 09 37 9D 81  .Ia..I.......7..
 
-0010: BD B5 5D F7                                        ..\].
+0010: BD B5 5D F7                                        ..].
 
-\]
+]
 
-\]
+]
 
   
 
-Certificate\[2\]:
+Certificate[2]:
 
 Owner: CN=confluent-ca, L=MountainView, O=Confluent, C=US
 
@@ -724,61 +724,61 @@ Extensions:
 
 #1: ObjectId: 2.5.29.35 Criticality=false
 
-AuthorityKeyIdentifier \[
+AuthorityKeyIdentifier [
 
-KeyIdentifier \[
+KeyIdentifier [
 
 0000: CC 83 15 C6 40 E2 ED 0F  2D D0 88 B9 C5 28 49 E1  ....@...-....(I.
 
 0010: B5 A6 53 D4                                        ..S.
 
-\]
+]
 
-\[CN=confluent-ca, L=MountainView, O=Confluent, C=US\]
+[CN=confluent-ca, L=MountainView, O=Confluent, C=US]
 
-SerialNumber: \[    634db0df 54303772 8cd7d347 d77e916b eccf3c78\]
+SerialNumber: [    634db0df 54303772 8cd7d347 d77e916b eccf3c78]
 
-\]
+]
 
   
 
 #2: ObjectId: 2.5.29.19 Criticality=true
 
-BasicConstraints:\[
+BasicConstraints:[
 
   CA:true
 
   PathLen:2147483647
 
-\]
+]
 
   
 
 #3: ObjectId: 2.5.29.15 Criticality=true
 
-KeyUsage \[
+KeyUsage [
 
-  Key\_CertSign
+  Key_CertSign
 
-  Crl\_Sign
+  Crl_Sign
 
-\]
+]
 
   
 
 #4: ObjectId: 2.5.29.14 Criticality=false
 
-SubjectKeyIdentifier \[
+SubjectKeyIdentifier [
 
-KeyIdentifier \[
+KeyIdentifier [
 
 0000: CC 83 15 C6 40 E2 ED 0F  2D D0 88 B9 C5 28 49 E1  ....@...-....(I.
 
 0010: B5 A6 53 D4                                        ..S.
 
-\]
+]
 
-\]
+]
 
   
 
@@ -798,7 +798,7 @@ KeyIdentifier \[
 - ssl.keystore.credentials
     
 
-sudo tee ~/tls/kafka-1-creds/kafka-1\_sslkey\_creds << EOF >/dev/null
+sudo tee ~/tls/kafka-1-creds/kafka-1_sslkey_creds << EOF >/dev/null
 
 confluent
 
@@ -807,7 +807,7 @@ EOF
 - ssl.key.credentials
     
 
-sudo tee ~/tls/kafka-1-creds/kafka-1\_keystore\_creds << EOF >/dev/null
+sudo tee ~/tls/kafka-1-creds/kafka-1_keystore_creds << EOF >/dev/null
 
 confluent
 
@@ -817,9 +817,9 @@ EOF
 
 Environment 의
 
-KAFKA\_SSL\_KEYSTORE\_CREDENTIALS: kafka-1\_keystore\_creds
+KAFKA_SSL_KEYSTORE_CREDENTIALS: kafka-1_keystore_creds
 
-KAFKA\_SSL\_KEY\_CREDENTIALS: kafk-1\_sslkey\_creds
+KAFKA_SSL_KEY_CREDENTIALS: kafk-1_sslkey_creds
 
   
 
@@ -842,7 +842,7 @@ docker-compose -f ~/tls/docker-compose.yml ps
 1. Kafka-1 Broker 에 SSL로 연결
     
 ```
-openssl s\_client -connect kafka-1-external:19093 -tls1\_3 -showcerts
+openssl s_client -connect kafka-1-external:19093 -tls1_3 -showcerts
 
   
 
