@@ -85,7 +85,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: benmastselby/hugo-deploy-gh-pages@main
+        uses: benmatselby/hugo-deploy-gh-pages@main
         env:
           HUGO_VERSION: 0.109.0
           TARGET_REPO: jupilhwang/jupilhwang.github.io
