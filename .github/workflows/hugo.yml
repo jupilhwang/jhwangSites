@@ -73,10 +73,10 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           external_repository: jupilhwang/jupilhwang.github.io
           publish_branch: master
-          publish_dir: ./
+          publish_dir: ./public
           user_name: jupilhwang
           user_email: jupil.hwang@gmail.com
           cname: jupilhwang.github.io
