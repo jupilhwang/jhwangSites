@@ -19,7 +19,7 @@ theme= "hugo-theme-cleanwhite"
 #theme= "hugo-theme-learn"
 enableRobotsTXT = true
 canonifyURLs = true
-utterances = true
+utterances= true
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]
