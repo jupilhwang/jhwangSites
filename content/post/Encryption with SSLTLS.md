@@ -167,171 +167,112 @@ keytool -keystore kafka.client.truststore.jks -alias CARoot -import -file ca.crt
 ![](img/image%203.png)
 
 ### 1-1. Certificate Authority (CA) 설정 파일 생성
-
+```
 \[ policy\_match \]
-
 countryName = match
-
 stateOrProvinceName = match
-
 organizationName = match
-
 organizationalUnitName = optional
-
 commonName = supplied
-
 emailAddress = optional
 
-  
-
 \[ req \]
-
 prompt = no
-
 distinguished\_name = dn
-
 default\_md = sha256
-
 default\_bits = 4096
-
 x509\_extensions = v3\_ca
 
-  
-
 \[ dn \]
-
 countryName = {country code, e.g., US}
-
 organizationName = {organization name}
-
 localityName = {locality, e.g., city name}
-
 commonName = {certificate common name, e.g., <company name>-ca}
 
-  
-
 \[ v3\_ca \]
-
 subjectKeyIdentifier=hash
-
 basicConstraints = critical,CA:true
-
 authorityKeyIdentifier=keyid:always,issuer:always
-
 keyUsage = critical,keyCertSign,cRLSign
-
-  
+```
 
 ### 1-2. CA key 및 Certificate 생성 후 pem format 으로 변경
-
+```
 openssl req -new -nodes \\
-
   -x509 \\
-
   -days {validity} \\
-
   -newkey rsa:2048 \\
-
   -keyout ca.key \\
-
   -out ca.crt \\
-
   -config ca.cnf
-
   
 
 cat ca.crt ca.key > ca.pem
-
+```
 ### 1-3.  server key 및 Certificate signing request (.csr 파일)
-
+```
 openssl req -new \\
-
     -newkey rsa:2048 \\
-
     -keyout kafka.server.key \\
-
     -out kafka.server.csr \\
-
     -config kafka.server.cnf \\
-
     -nodes
+```
 
 ### 1-4. Server certificate 를 CA 로 sign 하기
-
+```
 openssl x509 -req \\
-
     -days {validity} \\
-
     -in kafka.server.csr \\
-
     -CA ca.crt \\
-
     -CAkey ca.key \\
-
     -CAcreateserial \\
-
     -out kafka.server.crt \\
-
     -extfile kafka.server.cnf \\
-
     -extensions v3\_req
+```
 
 ### 1-5. Server certificate 를 pkcs12 포멧으로 변경
-
+```
 openssl pkcs12 -export \\
-
     -in kafka.server.crt \\
-
     -inkey kafka.server.key \\
-
     -chain \\
-
     -CAfile ca.pem \\
-
     -name localhost \\
-
     -out kafka.server.p12 \\
-
     -password pass:test1234
+```
 
 ### 1-6. server keystore 생성
-
+```
 sudo keytool -importkeystore \\
-
     -deststorepass test1234 \\
-
     -destkeystore kafka.server.keystore.pkcs12 \\
-
     -srckeystore kafka.server.p12 \\
-
     -deststoretype PKCS12  \\
-
     -srcstoretype PKCS12 \\
-
     -noprompt \\
-
     -srcstorepass test1234
+```
 
 ##   
 
 ## 2\. Kafka Broker SSL Properties 설정
 
 ### Broker properties 파일에 keystore 설정 추가
-
+```
 ssl.keystore.location=/var/ssl/private/kafka.server.keystore.pkcs12
-
 ssl.keystore.password=test1234
-
 ssl.key.password=test1234
-
-  
+```  
 
 ## 3\. Kafka Broker SSL Listener 설정
 
 ### Kafka Broker SSL Listeners 설정
-
+```
 listeners=SSL://:9093,SASL\_SSL://:9094
-
+```
   
 
 - The SSL://:9093 listener does not require client authentication unless ssl.client.auth=required is also set
@@ -349,7 +290,7 @@ listeners=SSL://:9093,SASL\_SSL://:9094
 
 - SSL Listener 추가
     
-
+```
 #KAFKA\_LISTENERS: PLAINTEXT://0.0.0.0:19092,BROKER://0.0.0.0:9092
 
 #KAFKA\_ADVERTISED\_LISTENERS: PLAINTEXT://kafka-1-external:19092,BROKER://kafka-1:9092
@@ -357,39 +298,33 @@ listeners=SSL://:9093,SASL\_SSL://:9094
 KAFKA\_LISTENERS: PLAINTEXT://0.0.0.0:19092,SSL://0.0.0.0:19093,BROKER://0.0.0.0:9092
 
 KAFKA\_ADVERTISED\_LISTENERS: PLAINTEXT://kafka-1-external:19092,SSL://kafka-1-external:19093,BROKER://kafka-1:9092
-
+```
   
 
 - listener.security.protocol.map 에 SSL 추가
     
-
+```
 KAFKA\_LISTENER\_SECURITY\_PROTOCOL\_MAP: PLAINTEXT:PLAINTEXT,SSL:SSL,BROKER:PLAINTEXT
-
+```
   
 
 ## Broker Keystore
 
 1. Certificate Authority (CA) Key 및 Certificate 생성
     
-
+```
 openssl req -new -nodes \\
-
   -x509 \\
-
   -days 365 \\
-
   -newkey rsa:2048 \\
-
   -keyout ~/tls/ca.key \\
-
   -out ~/tls/ca.crt \\
-
   -config ~/tls/ca.cnf
-
+```
   
 
   
-
+```
 Generating a RSA private key
 
 ...................+++++
@@ -399,10 +334,10 @@ Generating a RSA private key
 writing new private key to '/home/training/tls/ca.key'
 
 \-----
-
+```
 - ca.cnf
     
-
+```
 \[ policy\_match \]
 
 countryName = match
@@ -454,21 +389,21 @@ basicConstraints = critical,CA:true
 authorityKeyIdentifier=keyid:always,issuer:always
 
 keyUsage = critical,keyCertSign,cRLSign
-
+```
   
 
   
 
 1. CA Key 를 pem 포멧으로 변경
     
-
+```
 cat ~/tls/ca.crt ~/tls/ca.key > ~/tls/ca.pem
-
+```
   
 
 1. server key 및 certificate signing request (.csr file) 생성
     
-
+```
 openssl req -new \\
 
     -newkey rsa:2048 \\
@@ -480,10 +415,10 @@ openssl req -new \\
     -config ~/tls/kafka-1-creds/kafka-1.cnf \\
 
     -nodes
-
+```
 - kafka-1.cnf
     
-
+```
 \[req\]
 
 prompt = no
@@ -543,12 +478,12 @@ subjectAltName = @alt\_names
 DNS.1=kafka-1
 
 DNS.2=kafka-1-external
-
+```
   
 
 1. Server certificate 를 CA로 sign 하기
     
-
+```
 openssl x509 -req \\
 
     -days 3650 \\
@@ -566,8 +501,7 @@ openssl x509 -req \\
     -extfile ~/tls/kafka-1-creds/kafka-1.cnf \\
 
     -extensions v3\_req
-
-  
+```
 
   
 
@@ -581,7 +515,7 @@ Getting CA Private Key
 
 1. server certificate 를 pkcs12 포멧으로 변경
     
-
+```
 openssl pkcs12 -export \\
 
     -in ~/tls/kafka-1-creds/kafka-1.crt \\
@@ -597,12 +531,12 @@ openssl pkcs12 -export \\
     -out ~/tls/kafka-1-creds/kafka-1.p12 \\
 
     -password pass:confluent
-
+```
   
 
 1. Broker keystore 생성
     
-
+```
 sudo keytool -importkeystore \\
 
     -deststorepass confluent \\
@@ -618,7 +552,7 @@ sudo keytool -importkeystore \\
     -noprompt \\
 
     -srcstorepass confluent
-
+```
   
 
 Importing keystore /home/training/tls/kafka-1-creds/kafka-1.p12 to /home/training/tls/kafka-1-creds/kafka.kafka-1.keystore.pkcs12...
@@ -631,13 +565,13 @@ Import command completed:  1 entries successfully imported, 0 entries failed or
 
 1. kafka-1 broker keystore 확인
     
-
+```
 keytool -list -v \\
 
     -keystore ~/tls/kafka-1-creds/kafka.kafka-1.keystore.pkcs12 \\
 
     -storepass confluent
-
+```
   
 
 Keystore type: PKCS12
