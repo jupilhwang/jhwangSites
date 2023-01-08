@@ -1,7 +1,3 @@
 [submodule "themes/hugo-theme-cleanwhite"]
 	path = themes/hugo-theme-cleanwhite
 	url = https://github.com/zhaohuabing/hugo-theme-cleanwhite.git
-[submodule "public"]
-	path = public
-	url = https://github.com/jupilhwang/jupilhwang.github.io
-	branch = master
