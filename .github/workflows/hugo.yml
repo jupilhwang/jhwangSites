@@ -33,11 +33,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: true
-          fetch-depth: 1
+          submodules: false
+          fetch-depth: 0
       
-      - name: Submodule update
-        run: git submodule update --init --recursive 
+      # - name: Submodule update
+      #   run: git submodule update --init --recursive 
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
