@@ -19,7 +19,7 @@ theme= "hugo-theme-cleanwhite"
 #theme= "hugo-theme-learn"
 enableRobotsTXT = true
 canonifyURLs = true
-utterances= true
+
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]
@@ -45,6 +45,7 @@ about_me = true
 showtoc = false
 custom_css = ["css/lightbox.css", "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css", "css/main.css"]
 custom_js = ["js/lightbox.js", "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", "js/main.js"]
+utterances= true
 
 [sitemap]
 ChangeFreq = "daily"
