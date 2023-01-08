@@ -45,7 +45,7 @@ jobs:
           hugo-version: '0.109.0'
 
       - name: Build with Hugo
-        run: hugo --minify
+        run: hugo --minify --baseURL https://jupilhwang.github.io/ --ignoreCache
 
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v1
