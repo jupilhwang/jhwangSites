@@ -11,7 +11,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -27,43 +27,26 @@ defaults:
 
 jobs:
   # Build job
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    env:
-      HUGO_VERSION: 0.109.0
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{github.workflows }}-${{ github.ref }}
     steps:
-      - name: Install Hugo CLI
-        run: |
-          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
-          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
-
-      - name: Install Dart Sass Embedded
-        run: sudo snap install dart-sass-embedded
-
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: recursive
+          submodules: true
+          fetch-depth: 0
 
-      - name: Update Theme
-        run: git submodule update --init --recursive
-
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v2
-
-      - name: Install Node.js dependencies
-        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.109.0'
 
       - name: Build with Hugo
-        env:
-          # For maximum backward compatibility with Hugo modules
-          HUGO_ENVIRONMENT: production
-          HUGO_ENV: production
-        run: |
-          hugo \
-            --minify \
-            --baseURL "https://jupilhwang.github.io/"
+        run: hugo --minify
 
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v1
