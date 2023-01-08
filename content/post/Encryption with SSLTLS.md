@@ -5,8 +5,9 @@ categories:
     - Kafka
     - Confluent
 tags:
-    - docker
-    - cloud
+    - kafka
+    - ssl/tls
+    - encryption
 draft: true
 ---
 
