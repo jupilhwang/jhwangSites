@@ -30,7 +30,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.108.0
+      HUGO_VERSION: 0.109.0
     steps:
       - name: Install Hugo CLI
         run: |
@@ -44,6 +44,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: recursive
+
+      - name: Update Theme
+        run: git submodule update --init --recursive
 
       - name: Setup Pages
         id: pages
@@ -62,20 +65,22 @@ jobs:
             --minify \
             --baseURL "https://jupilhwang.github.io/"
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./public
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v1
+      #   with:
+      #     path: ./public
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.TOKEN }}
+          github_token: ${{ secrets.TOKEN }}
           external_repository: jupilhwang/jupilhwang.github.io
-          publish_dir: ./public
+          publish_branch: master
+          publish_dir: ./
           user_name: jupilhwang
           user_email: jupil.hwang@gmail.com
-          publish_branch: master
+          cname: jupilhwang.github.io
+
 
 
 
