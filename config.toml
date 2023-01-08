@@ -1,9 +1,9 @@
-baseURL = "https://jupilhwang.github.io/"
+baseURL = "https://jupilhwang.github.io"
 builddrafts = true
 canonifyurls = true
 languageCode = "en-US.UTF8"
 DefaultContentLanguage = "kr"
-title = "Just Do It ! - Yolo"
+title = "Just Do It ! - 행동하지 않으면 성공도 실패도 없다"
 pygmentsuseclasses = true
 pluralizelisttitles = false
 comments = "disqus"
