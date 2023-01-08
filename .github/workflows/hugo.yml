@@ -89,6 +89,6 @@ jobs:
         env:
           HUGO_VERSION: 0.109.0
           TARGET_REPO: jupilhwang/jupilhwang.github.io
-          TARGET_BRANCH: main
+          TARGET_BRANCH: master
           TOEKN: ${{ secrets.TOKEN}}
           CNAME: jupilhwang.github.io
