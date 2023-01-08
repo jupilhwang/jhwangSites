@@ -827,21 +827,21 @@ KAFKA\_SSL\_KEY\_CREDENTIALS: kafk-1\_sslkey\_creds
 
 1. Kafka Broker 시작
     
-
+```
 docker-compose -f ~/tls/docker-compose.yml up -d
-
+```
   
 
 1. Zookeeper / Kafka broker 가 정상적으로 동작중인지 확인
     
-
+```
 docker-compose -f ~/tls/docker-compose.yml ps
-
+```
   
 
 1. Kafka-1 Broker 에 SSL로 연결
     
-
+```
 openssl s\_client -connect kafka-1-external:19093 -tls1\_3 -showcerts
 
   
@@ -855,7 +855,7 @@ verify error:num=19:self signed certificate in certificate chain
 ...
 
 ...
-
+```
   
 
   
