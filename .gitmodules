@@ -1,0 +1,4 @@
+[submodule "themes/hugo-theme-cleanwhite"]
+	path = themes/hugo-theme-cleanwhite
+	url = https://github.com/jupilhwang/hugo-theme-cleanwhite
+	branch = master
